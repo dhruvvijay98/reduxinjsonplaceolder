@@ -3,7 +3,6 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./App.css";
 import Navbar from "./Navbar";
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
   useLocation,

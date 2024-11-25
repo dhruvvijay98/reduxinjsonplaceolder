@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPosts } from "./reducer/apiCallingPost";
 
 function Home() {
-  const [posts, SetPosts] = useState([]);
-  const [filteredPosts, setFilteredPosts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [loading, setLoading] = useState(true);
+ const dispatch = useDispatch();
+  const {posts,loading} = useSelector((state) => state?.jsonPlaceHolderReducer);
+  console.log(posts, "..........posts");
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((response) => response.json())
-      .then((data) => {
-        SetPosts(data);
-        setFilteredPosts(data);
-        setLoading(false);
-      })
-      .catch((error) => console.error("fetching error", error));
-  }, []);
+    dispatch(fetchPosts()); // Dispatch the thunk to fetch posts
+  }, [dispatch]);
+
   const handleChangeSubmit = (e) => {
     setSearchQuery(e.target.value);
     e.preventDefault();
@@ -23,17 +19,13 @@ function Home() {
       post.title.toLowerCase().includes(e.target.value.toLowerCase())
     );
 
-    setFilteredPosts(filtered);
+    // setFilteredPosts(filtered);
   };
 
   return (
     <div>
       <h1 style={{ color: "yellow" }}>Posts</h1>
-      <form
-        class="d-flex"
-        role="search"
-        type="submit"
-      >
+      <form className="d-flex" role="search" type="submit">
         <input
           className="form-control"
           type="search"
@@ -48,12 +40,13 @@ function Home() {
         <p>Loading...</p>
       ) : (
         <div className="postscontainer">
-          {filteredPosts.map((post) => (
-            <div className="card" key={post.id} style={{ width: "30%" }}>
-              <p>Title: {post.title}</p>
-              <p>Body: {post.body}</p>
-            </div>
-          ))}
+          {posts.length > 0 &&
+            posts.map((post) => (
+              <div className="card" key={post.id} style={{ width: "30%" }}>
+                <p>Title: {post.title}</p>
+                <p>Body: {post.body}</p>
+              </div>
+            ))}
         </div>
       )}
       ;
