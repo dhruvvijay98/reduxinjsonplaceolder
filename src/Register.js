@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Register.css";
 import { useDispatch } from "react-redux";
-import { signup } from "./reducer/signUpSlicer";
+import { signUp } from "./reducer/signUpSlicer";
 
 
 function Register() {
@@ -68,7 +68,7 @@ function Register() {
     const handleSubmit = (e) => {
       e.preventDefault();
       if(validate()){
-        dispatch(signup(formData))
+        dispatch(signUp(formData))
         console.log("Form submitted successfully",formData);
       }
     };
@@ -100,8 +100,6 @@ function Register() {
           <input
             type="text"
             className={`form-control ${errors.lastName ? "is-invalid" : ""}`}
-            id="lastName"
-            aria-describedby="emailHelp"
             name="lastName"
             value={formData.lastname}
             onChange={handlerChange}
@@ -115,8 +113,6 @@ function Register() {
           <input
             type="number"
             className={`form-control ${errors.number ? "is-invalid" : ""}`}
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
             name="number"
             value={formData.number}
             onChange={handlerChange}

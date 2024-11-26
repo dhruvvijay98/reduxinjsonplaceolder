@@ -7,12 +7,12 @@ const signUpSlicer = createSlice({
     isLoggedIn: false,
   },
   reducers: {
-    signup: (state, action) => {
+    signUp: (state, action) => {
       state.user = [...state.user,action.payload];
       state.isLoggedIn = true; // Mark the user as logged in
     },
   },
 });
 
-export const { signup } = signUpSlicer.actions; // Export actions
+export const { signUp } = signUpSlicer.actions; // Export actions
 export default signUpSlicer.reducer; // Export reducer
