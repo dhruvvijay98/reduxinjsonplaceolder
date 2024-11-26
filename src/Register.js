@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import "./Register.css";
+import { useDispatch } from "react-redux";
+import { signup } from "./reducer/signUpSlicer";
+
 
 function Register() {
+  const dispatch=useDispatch();
   const [formData, setFormData] = useState({
     firstName:"",
     lastName:"",
@@ -64,6 +68,7 @@ function Register() {
     const handleSubmit = (e) => {
       e.preventDefault();
       if(validate()){
+        dispatch(signup(formData))
         console.log("Form submitted successfully",formData);
       }
     };

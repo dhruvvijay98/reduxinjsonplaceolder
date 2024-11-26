@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import apiReducer from "./apiSlicer";
+import authReducer from "./loginSlicer";
 import { thunk } from 'redux-thunk';
+import signUpReducer from "./signUpSlicer";
 
 export const store = configureStore({
   reducer: {
     jsonPlaceHolderReducer:apiReducer,
-    loginReducer:{},
-    signUpReducer:{}
+    loginReducer:authReducer,
+    signUpReducer:signUpReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(thunk), 

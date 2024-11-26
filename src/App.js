@@ -14,11 +14,11 @@ import Register from "./Register";
 function App() {
   const containerStyle = {
     backgroundImage: `url('https://plus.unsplash.com/premium_photo-1697730150275-dba1cfe8af9c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`,
-    backgroundSize: "auto", // Keeps the natural size of the image for tiling
-    backgroundRepeat: "repeat", // Ensures the image repeats in both directions
-    backgroundPosition: "center", // Centers the initial image
-    minHeight: "100vh", // Ensures the container is at least the viewport height
-    height: "auto", // Allows the container to grow as content is added
+    backgroundSize: "auto", 
+    backgroundRepeat: "repeat",
+    backgroundPosition: "center", 
+    minHeight: "100vh", 
+    height: "auto", 
   };
   const location = useLocation();
   return (
